@@ -1,3 +1,4 @@
 ---
 # vars file for jira
 jira_version: '8.11.1'
+gather_facts: no
