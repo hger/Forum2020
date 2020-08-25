@@ -15,3 +15,11 @@
   copy:
     src: response.varfile
     dest: /tmp/response.varfile
+
+- name: Install jira using the response file
+  shell: atlassian-jira-software-{{ jira_version }}-x64.bin -q -varfile response.varfile
+  args:
+    chdir: /tmp/
+
+- name: Kill the running jira instance
+  shell: /opt/atlassian/jira/bin/stop-jira.sh
