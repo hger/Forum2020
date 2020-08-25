@@ -17,7 +17,7 @@
     dest: /tmp/response.varfile
 
 - name: Install jira using the response file
-  shell: /tmp/atlassian-jira-software-{{ jira_version }}-x64.bin -q -varfile /tmp/(response.varfile
+  shell: /tmp/atlassian-jira-software-{{ jira_version }}-x64.bin -q -varfile /tmp/response.varfile
   args:
     executable: /bin/bash
 
