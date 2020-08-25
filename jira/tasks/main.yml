@@ -1,6 +1,5 @@
 ---
-# tasks file for jira
-- name: install dependency
+- name: Install fonts for Web UI
   yum:
     name: fontconfig
     state: present
@@ -23,3 +22,26 @@
 
 - name: Kill the running jira instance
   shell: /opt/atlassian/jira/bin/stop-jira.sh
+
+- name: Copy service file for jira
+  copy:
+    src: jira.service
+    dest: /etc/systemd/system/jira.service
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Force systemd to learn of new service
+  systemd:
+    daemon_reload: yes
+
+- name: Make sure jira runs under systemd
+  systemd:
+    name: jira
+    state: started
+    enabled: yes
+
+- firewalld:
+    port: 8080/tcp
+    permanent: yes
+    state: enabled
