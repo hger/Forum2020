@@ -1,0 +1,12 @@
+app.install.service=false
+app.jiraHome=/var/atlassian/application-data/jira
+executeLauncherAction=true
+existingInstallationDir=/usr/local/JIRA Software
+httpPort=8080
+launch.application$Boolean=true
+portChoice=default
+rmiPort=8005
+sys.adminRights$Boolean=true
+sys.confirmedUpdateInstallationString=false
+sys.installationDir=/opt/atlassian/jira
+sys.languageId=en

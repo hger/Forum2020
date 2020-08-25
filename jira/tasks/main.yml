@@ -1,8 +1,17 @@
 ---
 # tasks file for jira
+- name: install dependency
+  yum:
+    name: fontconfig
+    state: present
 
 - name: Download jira install media
   get_url:
     url: http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-{{ jira_version }}-x64.bin
     dest: /tmp/atlassian-jira-software-{{ jira_version }}-x64.bin
     mode: '0777'
+
+- name: Copy response file for installer
+  copy:
+    src: response.varfile
+    dest: /tmp/response.varfile
