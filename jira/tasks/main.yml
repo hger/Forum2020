@@ -1,0 +1,8 @@
+---
+# tasks file for jira
+
+- name: Download jira install media
+  get_url:
+    url: http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-{{ jira_version }}-x64.bin
+    dest: /tmp/atlassian-jira-software-{{ jira_version }}-x64.bin
+    mode: '0777'
