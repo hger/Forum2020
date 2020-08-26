@@ -1,5 +1,5 @@
 ---
-- name: Install python expect to be used later
+- name: Install python deps for pip install
   yum:
     name:
       - python2-pip
@@ -7,7 +7,8 @@
       - python-setuptools
     state: present
 
-- pip:
+- name: Install pexpect using pip
+  pip:
     name: pexpect
 
 - name: Download mssql repo file
@@ -40,6 +41,7 @@
 - name: Case insensitive password string match
   expect:
     command: /opt/mssql/bin/mssql-conf set-collation
+    timeout: null
     responses:
       (?i)collation: "SQL_Latin1_General_CP437_CI_AI"
 
