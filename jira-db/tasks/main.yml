@@ -41,7 +41,7 @@
 - name: Set collation to "SQL_Latin1_General_CP437_CI_AI"
   expect:
     command: /opt/mssql/bin/mssql-conf set-collation
-    timeout: 180
+    timeout: 300
     responses:
       (?i)collation: "SQL_Latin1_General_CP437_CI_AI"
 
