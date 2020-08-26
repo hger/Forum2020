@@ -38,10 +38,10 @@
     name: mssql-server
     state: stopped
 
-- name: Case insensitive password string match
+- name: Set collation to "SQL_Latin1_General_CP437_CI_AI"
   expect:
     command: /opt/mssql/bin/mssql-conf set-collation
-    timeout: null
+    timeout: 180
     responses:
       (?i)collation: "SQL_Latin1_General_CP437_CI_AI"
 
