@@ -1,8 +1,14 @@
 ---
 - name: Install python expect to be used later
   yum:
-    name: pexpect
+    name:
+      - python2-pip
+      - python-virtualenv
+      - python-setuptools
     state: present
+
+- pip:
+    name: pexpect
 
 - name: Download mssql repo file
   get_url:
