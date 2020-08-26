@@ -16,10 +16,22 @@
   environment:
     MSSQL_SA_PASSWORD: "{{ sa_passwd }}"
     MSSQL_PID: "{{ db_edition }}"
-    SQL_ENABLE_AGENT: "y"
-    ACCEPT_EULA: "y"
+    SQL_ENABLE_AGENT: "Y"
+    ACCEPT_EULA: "Y"
     SQL_INSTALL_USER: "jiradbuser"
     SQL_INSTALL_USER_PASSWORD: "jiradbuser"
+
+- name: Stop mssql so we can set collation
+  systemd:
+    name: mssql-server
+    state: stopped
+    enabled: yes
+
+- name: Case insensitive password string match
+  expect:
+    command: /opt/mssql/bin/mssql-conf set-collation
+    responses:
+      (?i)collation: "SQL_Latin1_General_CP437_CI_AI"
 
 - name: Make sure mssql runs under systemd
   systemd:
