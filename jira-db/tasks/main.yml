@@ -14,8 +14,8 @@
 - name: Setup of MSSQL server
   shell: /opt/mssql/bin/mssql-conf -n setup
   environment:
-    MSSQL_SA_PASSWORD: {{ sa_passwd }}
-    MSSQL_PID: {{ db_edition }}
+    MSSQL_SA_PASSWORD: "{{ sa_passwd }}"
+    MSSQL_PID: "{{ db_edition }}"
     SQL_ENABLE_AGENT: "y"
     ACCEPT_EULA: "y"
 
