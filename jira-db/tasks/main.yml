@@ -31,7 +31,7 @@
     SQL_ENABLE_AGENT: "Y"
     ACCEPT_EULA: "Y"
     SQL_INSTALL_USER: "jiradbuser"
-    SQL_INSTALL_USER_PASSWORD: "jiradbuser"
+    SQL_INSTALL_USER_PASSWORD: "{{ sa_passwd }}"
 
 - name: Stop mssql so we can set collation
   systemd:
