@@ -1,2 +1,4 @@
 ---
-# vars file for jira-db
+sa_passwd: "Password1!"
+#can be any of evaluation, developer, express, web, standard, enterprise, or your 25 digit product key
+db_edition: "express"

@@ -14,7 +14,19 @@
 - name: Setup of MSSQL server
   shell: /opt/mssql/bin/mssql-conf -n setup
   environment:
-    MSSQL_SA_PASSWORD: "Password1!"
-    MSSQL_PID: "express"
+    MSSQL_SA_PASSWORD: {{ sa_passwd }}
+    MSSQL_PID: {{ db_edition }}
     SQL_ENABLE_AGENT: "y"
     ACCEPT_EULA: "y"
+
+- name: Make sure mssql runs under systemd
+  systemd:
+    name: mssql-server
+    state: started
+    enabled: yes
+
+- firewalld:
+    port: 1433/tcp
+    permanent: yes
+    immediate: yes
+    state: enabled
