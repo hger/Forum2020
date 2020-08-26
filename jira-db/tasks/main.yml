@@ -17,4 +17,4 @@
     MSSQL_SA_PASSWORD: "Password1!"
     MSSQL_PID: "express"
     SQL_ENABLE_AGENT: "y"
-    
+    ACCEPT_EULA: "y"
