@@ -25,7 +25,6 @@
   systemd:
     name: mssql-server
     state: stopped
-    enabled: yes
 
 - name: Case insensitive password string match
   expect:
