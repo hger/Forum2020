@@ -1,4 +1,9 @@
 ---
+- name: Install python expect to be used later
+  yum:
+    name: pexpect
+    state: present
+
 - name: Download mssql repo file
   get_url:
     url: https://packages.microsoft.com/config/rhel/7/mssql-server-2017-gdr.repo
