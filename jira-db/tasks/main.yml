@@ -1,2 +1,13 @@
 ---
-# tasks file for jira-db
+- name: Download mssql repo file
+  get_url:
+    url: https://packages.microsoft.com/config/rhel/7/mssql-server-2017.repo
+    dest: /etc/yum.repos.d/mssql-server.repo
+    mode: '0644'
+
+- name: Install fonts for Web UI
+  yum:
+    name: mssql-server
+    state: present
+    update_cache: yes
+
