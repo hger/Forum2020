@@ -5,9 +5,16 @@
     dest: /etc/yum.repos.d/mssql-server.repo
     mode: '0644'
 
-- name: Install fonts for Web UI
+- name: Install MSSQL server 2017
   yum:
     name: mssql-server
     state: present
     update_cache: yes
 
+- name: Setup of MSSQL server
+  shell: /opt/mssql/bin/mssql-conf -n setup
+  environment:
+    MSSQL_SA_PASSWORD: "Password1!"
+    MSSQL_PID: "express"
+    SQL_ENABLE_AGENT: "y"
+    
