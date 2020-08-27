@@ -1,2 +1,36 @@
 ---
-# tasks file for jira-lb
+#- name: Register the system to RHN
+#  redhat_subscription:
+#    state: present
+#    username: hakan@hagenrud.nu
+#    password: mysecretpassword
+#    auto_attach: true
+
+- name: Install nginx
+  yum:
+    name: nginx
+    state: present
+
+- name: Make sure nginx runs under systemd
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+
+- firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+
+- firewalld:
+    service: https
+    permanent: yes
+    state: enabled
+
+- name: Redirect port 80 to 443 with Rich Rule
+  firewalld:
+    rich_rule: rule family=ipv4 forward-port port=80 protocol=tcp to-port=443
+    zone: public
+    permanent: yes
+    immediate: yes
+    state: enabled

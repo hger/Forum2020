@@ -33,26 +33,27 @@
     SQL_INSTALL_USER: "jiradbuser"
     SQL_INSTALL_USER_PASSWORD: "{{ sa_passwd }}"
 
+- firewalld:
+    port: 1433/tcp
+    permanent: yes
+    immediate: yes
+    state: enabled
+
 - name: Stop mssql so we can set collation
   systemd:
     name: mssql-server
     state: stopped
 
-- name: Set collation to "SQL_Latin1_General_CP437_CI_AI"
+#stopped working. please assist
+- name: Set collation to SQL_Latin1_General_CP437_CI_AI
   expect:
     command: /opt/mssql/bin/mssql-conf set-collation
-    timeout: 300
+    timeout: null
     responses:
-      (?i)collation: "SQL_Latin1_General_CP437_CI_AI"
+      (?i)collation: SQL_Latin1_General_CP437_CI_AI
 
 - name: Make sure mssql runs under systemd
   systemd:
     name: mssql-server
     state: started
     enabled: yes
-
-- firewalld:
-    port: 1433/tcp
-    permanent: yes
-    immediate: yes
-    state: enabled
