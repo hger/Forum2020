@@ -20,11 +20,13 @@
 - firewalld:
     service: http
     permanent: yes
+    immediate: yes
     state: enabled
 
 - firewalld:
     service: https
     permanent: yes
+    immediate: yes
     state: enabled
 
 - name: Redirect port 80 to 443 with Rich Rule
